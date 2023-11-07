@@ -55,8 +55,8 @@ RSpec.describe PermissionSeries do
 
   describe '#to_s' do
     it 'returns a string representation of the permissions' do
-      permission_series.set(read: true)
-      expect(permission_series.to_s).to eq("read")
+      permission_series.set(read: true, destroy: true)
+      expect(permission_series.to_s).to eq("read destroy")
     end
   end
 end

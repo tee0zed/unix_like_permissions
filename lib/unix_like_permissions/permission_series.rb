@@ -102,19 +102,17 @@ module UnixLikePermissions
     end
 
     def to_s
-      i = 0
       result = ''
-      stringified_permissions.each_char do |action|
+
+      stringified_permissions.each_char.with_index do |action, i|
         if action == '1'
-          result << ' '
+          result << ' ' unless i.zero?
           permissions = PERMISSIONS_MAP.keys
           result << permissions[i].to_s
         end
-
-        i += 1
       end
 
-      result.strip
+      result
     end
 
     private
