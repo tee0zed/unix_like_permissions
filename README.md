@@ -155,9 +155,11 @@ permissions.to_i  # => 4
 
 #### Serialization
 
-`#to_h`: Returns a hash with permission names as keys and boolean values indicating whether each permission is set.
+`#to_h(type = :bool)`: Returns a hash with permission names as keys and boolean values indicating whether each permission is set.
 ```ruby
 permissions.to_h  # => { read: false, create: false, update: true, destroy: false }
+permissions.to_h(:int)  # => { read: 0, create: 0, update: 1, destroy: 0 }
+permissions.to_h(:str)  # => { read: '0', create: '0', update: '1', destroy: '0' }
 ```
 
 `#to_s`: Returns a string representation of the set permissions.
@@ -183,7 +185,7 @@ permissions.set_all(true)
 permissions.to_s # => "read create update destroy"
 ```
 
-set({ permission: value, ... }): Sets the specified permission to the boolean value provided (true or false).
+`set({ permission: value, ... })`: Sets the specified permission to the boolean value provided (true or false).
 
 ```ruby
 permissions.set(read: true, create: false)
@@ -192,7 +194,7 @@ permissions.to_s # => "read"
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [repository URL]. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](link to code of conduct).
+Bug reports and pull requests are welcome on GitHub. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](CODE_OF_CONDUCT.md).
 
 ## License
 
