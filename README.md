@@ -180,7 +180,7 @@ permissions.to_a(:str)  # => ['0', '0', '1', '0]
 ```ruby
 permissions.set_all(true)
 
-permissions.to_s # => "read, create, update, destroy"
+permissions.to_s # => "read create update destroy"
 ```
 
 set({ permission: value, ... }): Sets the specified permission to the boolean value provided (true or false).
