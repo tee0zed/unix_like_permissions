@@ -13,9 +13,14 @@ module UnixLikePermissions
   end
 
   def load_permissions_map!(permissions)
+    PermissionSeries.send(:remove_const, :PERMISSIONS_MAP_WAS) if defined?(PermissionSeries::PERMISSIONS_MAP_WAS)
     PermissionSeries.const_set(:PERMISSIONS_MAP_WAS, PermissionSeries::PERMISSIONS_MAP)
+
+    PermissionSeries.send(:remove_const, :PERMISSIONS_MAP) if defined?(PermissionSeries::PERMISSIONS_MAP)
     PermissionSeries.const_set(:PERMISSIONS_MAP, permissions_map(permissions))
+
     PermissionSeries::PERMISSIONS_MAP.freeze
+    PermissionSeries::PERMISSIONS_MAP_WAS.freeze
 
     PermissionSeries.define_getters!
     puts "Permission map loaded: #{PermissionSeries::PERMISSIONS_MAP}"
